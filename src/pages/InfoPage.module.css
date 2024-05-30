@@ -1,0 +1,44 @@
+.InfoPage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: 88vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.InfoPage_memes {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.InfoPage_memes img {
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+    border-radius: 15px;
+}
+
+.InfoPage_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 35vh;
+    width: 70vh;
+    background-color: aliceblue;
+    border-radius: 20px;
+    gap: 20px;
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.3);
+    border: solid 2px;
+}
+
+.InfoPage_form p {
+    text-align: justify;
+    padding: 0 20px;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 20px;
+}

@@ -1,0 +1,30 @@
+.InputText {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    height: 10%;
+    width: 60%;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+}
+
+.InputText:focus {
+    padding: 20px;
+}
+
+.InputText::placeholder {
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    padding: 5px;
+}
+
+.InputText:focus::placeholder {
+    color: transparent;
+}
+

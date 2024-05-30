@@ -1,20 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: "Roboto Slab", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,120,121,0.039653361344537785) 0%, rgba(0,212,255,0.2189250700280112) 100%);
-}
-
 .App {
     display: flex;
     flex-direction: column;
@@ -117,52 +100,6 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.new_task_form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 50vh;
-    width: 70vh;
-    background-color: aliceblue;
-    border-radius: 20px;
-    gap: 15px;
-    box-shadow: 10px 10px 5px rgba(0,0,0,0.3);
-    border: solid 2px;
-}
-
-.new_task_form input {
-    display: flex;
-    flex-direction: column;
-    height: 10%;
-    width: 60%;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
-    border-radius: 5px;
-}
-
-.new_task_form button {
-    height: 6%;
-    width: 20%;
-    border-radius: 7px;
-    font-size: 14px;
-    font-family: "Roboto Slab", serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-}
-.new_task_form input::placeholder {
-    text-align: center;
-    font-family: "Roboto Slab", serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-}
-
-.new_task_form button:hover {
-    cursor: pointer;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
 }
 
 .footer {

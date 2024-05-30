@@ -7,6 +7,14 @@ export function Header() {
         border: 'solid 2px black',
     }
 
+    const loginHandleClick = () => {
+        window.location.assign('http://localhost:3000/login');
+    }
+
+    const registrationHandleClick = () => {
+        window.location.assign('http://localhost:3000/registration');
+    }
+
     return (
         <div className={styles.header}>
             <div className={styles.header_logo}>
@@ -40,8 +48,8 @@ export function Header() {
 
             </div>
             <div className={styles.header_navigation}>
-                <button>SIGN UP</button>
-                <button>SIGN IN</button>
+                <button onClick={registrationHandleClick}>SIGN UP</button>
+                <button onClick={loginHandleClick}>SIGN IN</button>
             </div>
         </div>
     );

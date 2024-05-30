@@ -1,0 +1,15 @@
+.SaveButton {
+    height: 6%;
+    width: 20%;
+    border-radius: 7px;
+    font-size: 14px;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.SaveButton:hover {
+    cursor: pointer;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+}
