@@ -3,7 +3,8 @@ import {LayoutTitle} from "../UI-components/LayoutTitle";
 import {InputText} from "../UI-components/InputText";
 import Select, {SingleValue} from 'react-select';
 import {SubmitButton} from "../UI-components/SubmitButton";
-import {useState} from "react";
+import React, {useState} from "react";
+import {InputError} from "../UI-components/InputError";
 
 export function RegistrationPage() {
     type RoleOption = {
@@ -20,9 +21,12 @@ export function RegistrationPage() {
     const [fullName, setFullName] = useState('');
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState<SingleValue<RoleOption>>(null);
+    const [role, setRole] = useState<SingleValue<RoleOption>>(roles[0]);
+    const [activeModal, setActiveModal] = React.useState(false);
+    const [error, setError] = React.useState('');
 
     const handleClick = (e: React.FormEvent) => {
+        e.preventDefault();
         try {
             const newUser = {
                 fullName: fullName,
@@ -31,16 +35,36 @@ export function RegistrationPage() {
                 role: role?.value
             };
 
-            console.log(newUser);
-
-            fetch("http://localhost:8080/registration", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(newUser)
-                }
-            );
+            if (fullName === "") {
+                setActiveModal(true);
+                setError('Не заполнено поле "ФИО"!');
+                setTimeout(() => {
+                    setActiveModal(false);
+                }, 3000);
+            } else if (login === "") {
+                setActiveModal(true);
+                setError('Не заполнено поле "Логин"!');
+                setTimeout(() => {
+                    setActiveModal(false);
+                }, 3000);
+            } else if (password === "") {
+                setActiveModal(true);
+                setError('Не заполнено поле "Пароль"!');
+                setTimeout(() => {
+                    setActiveModal(false);
+                }, 3000);
+            } else {
+                setActiveModal(false);
+                setError('');
+                fetch("http://localhost:8080/registration", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(newUser)
+                    }
+                );
+            }
         } catch (err) {
             console.error(err);
         }
@@ -71,6 +95,11 @@ export function RegistrationPage() {
                 <SubmitButton
                     text={"Сохранить"}
                     onClick={handleClick}/>
+
+                <InputError
+                    text={error}
+                    active={activeModal}
+                    setActive={setActiveModal}/>
             </form>
         </div>
     );

@@ -1,0 +1,24 @@
+.InputError {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 20%;
+    border: solid 4px red;
+    position:fixed;
+    right: -25%;
+    bottom: 5px;
+    background-color: #f5a7a2;
+    border-radius: 20px;
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.3);
+    transition: all 0.5s ease-in-out;
+    font-size: 20px;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.3);
+}
+
+.InputError.active {
+    right: 5px;
+}
