@@ -16,22 +16,19 @@ export function AllTasksPage() {
     const [activeTask, setActiveTask] = React.useState<number[]>([]);
 
     useEffect(() => {
-        setItem(localStorage.getItem("token"));
-    }, []);
-
-    useEffect(() => {
         async function getAllTasks() {
-            const tasks = await getTasks();
-            setTasks(tasks);
+            if (localStorage.getItem("token") !== null) {
+                const tasks = await getTasks();
+                setTasks(tasks);
+            } else {
+                navigate("/login");
+            }
         }
-
         getAllTasks();
     }, []);
 
     useEffect(() => {
-        if (localStorage.getItem("token") === null) {
-            navigate("/login");
-        }
+        setItem(localStorage.getItem("token"));
     }, []);
 
     async function getTasks() {
