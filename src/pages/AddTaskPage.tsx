@@ -1,45 +1,92 @@
-import styles from './AddTaskPage.module.css'
+import styles from './styles/AddTaskPage.module.css'
 import {SubmitButton} from "../UI-components/SubmitButton";
 import {InputText} from "../UI-components/InputText";
 import {LayoutTitle} from "../UI-components/LayoutTitle";
-import React from "react";
+import React, {useEffect} from "react";
 import {InputError} from "../UI-components/InputError";
+import {SuccessModal} from "../UI-components/SuccessModal";
+import {useNavigate} from "react-router-dom";
 
 export function AddTaskPage() {
+    const navigate = useNavigate();
+
     const [title, setTitle] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [error, setError] = React.useState('');
-    const [modalActive, setModalActive] = React.useState(false);
+    const [activeErrorModal, setActiveErrorModal] = React.useState(false);
+    const [success, setSuccess] = React.useState('');
+    const [activeSuccessModal, setActiveSuccessModal] = React.useState(false);
+    const [item, setItem] = React.useState<string | null>("");
+
+    useEffect(() => {
+        setItem(localStorage.getItem("token"));
+    }, []);
+
+    const newTask = {
+        title: title,
+        description: description,
+    };
+
+    async function addNewTask() {
+        try {
+            setSuccess('');
+            setError('');
+            const response = await fetch("http://localhost:8080/taskApi/new", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${item}`,
+                },
+                body: JSON.stringify(newTask)
+            });
+
+            const text = await response.text();
+            console.log(response.status);
+
+            if (response.status === 201 || response.status === 200) {
+                setSuccess(`Задача "${newTask.title}" успешно сохранена!`);
+                setActiveSuccessModal(true);
+                setTimeout(() => {
+                    setActiveSuccessModal(false);
+                }, 1500);
+            } else if (response.status === 401) {
+                setError('Необходимо авторизоваться!');
+                setActiveErrorModal(true);
+                setTimeout(() => {
+                    setActiveErrorModal(false);
+                    navigate('/login');
+                }, 1500);
+            } else {
+                setError(text);
+                setActiveErrorModal(true);
+                setTimeout(() => {
+                    setActiveErrorModal(false);
+                }, 1500);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const handleClick = (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const newTask = {
-                title: title,
-                description: description,
-            };
             if (newTask.title === "") {
-                setModalActive(true);
+                setActiveErrorModal(true);
                 setError('Не заполнено поле "Наименование задачи"!');
                 setTimeout(() => {
-                    setModalActive(false);
+                    setActiveErrorModal(false);
                 }, 3000);
             } else if (newTask.description === "") {
-                setModalActive(true);
+                setActiveErrorModal(true);
                 setError('Не заполнено поле "Описание задачи"!');
                 setTimeout(() => {
-                    setModalActive(false);
+                    setActiveErrorModal(false);
                 }, 3000);
             } else {
                 setError('');
-                setModalActive(false);
-                fetch("http://localhost:8080/new", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(newTask)
-                });
+                setActiveErrorModal(false);
+                addNewTask();
             }
         } catch (error) {
             console.error(error);
@@ -64,9 +111,11 @@ export function AddTaskPage() {
             </form>
             <InputError
                 text={error}
-                active={modalActive}
-                setActive={setModalActive}
+                active={activeErrorModal}
             />
+            <SuccessModal
+                text={success}
+                active={activeSuccessModal}/>
         </div>
     );
 }

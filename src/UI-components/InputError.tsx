@@ -1,10 +1,9 @@
-import styles from './InputError.module.css';
+import styles from './styles/InputError.module.css';
 import React from "react";
 
 interface InputErrorProps {
     text: string;
     active: boolean;
-    setActive: (active: boolean) => void;
 }
 
 export function InputError({text, active}: InputErrorProps) {

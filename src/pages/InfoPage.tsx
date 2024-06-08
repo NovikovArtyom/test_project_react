@@ -1,4 +1,4 @@
-import styles from './InfoPage.module.css'
+import styles from './styles/InfoPage.module.css'
 
 export function InfoPage() {
     return (

@@ -1,0 +1,111 @@
+.TaskString_form {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: start;
+}
+
+.TaskString_form input {
+    margin: 10px 5px;
+    width: 15px;
+    height: 15px;
+}
+
+.TaskString_div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: aliceblue;
+    border-radius: 8px;
+    box-shadow: 4px 4px 10px black;
+    cursor: pointer;
+}
+
+.TaskString_div span {
+    padding: 5px 5px;
+}
+
+.TaskString_div.active .TaskString_description {
+    display: block;
+    padding: 5px 5px;
+    border-top: solid 1px black;
+}
+
+.TaskString_div.active img {
+    transform: rotate(180deg);
+}
+
+.TaskString_title {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+
+.TaskString_description {
+    display: none;
+}
+
+.TaskString_title img {
+    width: 15px;
+    height: 15px;
+    margin:  10px 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.TaskString {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    width: 100%;*/
+/*    background-color: aliceblue;*/
+/*    border-radius: 8px;*/
+/*    box-shadow: 4px 4px 10px black;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.TaskString_title {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/**/
+/*    align-items: center;*/
+/*}*/
+
+/*.TaskString span {*/
+/*    padding: 10px 10px;*/
+
+/*}*/
+
+/*.TaskString img {*/
+/*    width: 15px;*/
+/*    height: 15px;*/
+/*    margin-right:  10px;*/
+/*}*/
+
+/*.TaskString span:last-child {*/
+/*    display: none;*/
+/*}*/
+
+/*.TaskString.active span:last-child {*/
+/*    display: block;*/
+/*    border-top: solid 1px black;*/
+/*}*/
+
+/*.TaskString.active img {*/
+/*    transform: rotate(180deg);*/
+/*    margin-right: 10px;*/
+/*}*/

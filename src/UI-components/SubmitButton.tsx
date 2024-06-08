@@ -1,4 +1,4 @@
-import styles from './SaveButton.module.css'
+import styles from './styles/SaveButton.module.css'
 import React from "react";
 
 interface SubmitButtonProps {

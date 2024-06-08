@@ -1,7 +1,9 @@
 import styles from '../App.module.css'
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
 
 export function Header() {
+    const navigate = useNavigate();
+
     const activeStyle = {
         color: 'black',
         border: 'solid 2px black',
@@ -13,6 +15,11 @@ export function Header() {
 
     const registrationHandleClick = () => {
         window.location.assign('http://localhost:3000/registration');
+    }
+
+    const logoutHandleClick = () => {
+        localStorage.clear();
+        navigate('/login');
     }
 
     return (
@@ -47,10 +54,18 @@ export function Header() {
                 </NavLink>
 
             </div>
-            <div className={styles.header_navigation}>
-                <button onClick={registrationHandleClick}>SIGN UP</button>
-                <button onClick={loginHandleClick}>SIGN IN</button>
-            </div>
+
+            {
+                localStorage.getItem("token") !== null
+                    ? <div className={styles.header_navigation}>
+                        <span>{localStorage.getItem("name")}</span>
+                        <button onClick={logoutHandleClick}>LOG OUT</button>
+                    </div>
+                    : <div className={styles.header_navigation}>
+                        <button onClick={registrationHandleClick}>SIGN UP</button>
+                        <button onClick={loginHandleClick}>SIGN IN</button>
+                    </div>
+            }
         </div>
     );
 }

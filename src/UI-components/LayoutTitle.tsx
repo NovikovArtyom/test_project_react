@@ -1,4 +1,4 @@
-import styles from './LayoutTitle.module.css';
+import styles from './styles/LayoutTitle.module.css';
 
 export function LayoutTitle({text}: { text: string }) {
     return (

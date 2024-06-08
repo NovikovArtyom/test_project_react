@@ -1,4 +1,4 @@
-import styles from './InputText.module.css';
+import styles from './styles/InputText.module.css';
 
 interface InputTextProps {
     text: string;
